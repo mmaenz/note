@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>de.note.core</groupId>
+  <groupId>de.note</groupId>
   <artifactId>de.note.core</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <build>
@@ -15,4 +15,10 @@
       </plugin>
     </plugins>
   </build>
+    	<parent>
+		<groupId>de.note</groupId>
+		<artifactId>de.note</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../de.note/pom.xml</relativePath>
+	</parent>
 </project>
