@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        mavenLocal()
         jcenter()
     }
     dependencies {
@@ -7,12 +8,20 @@ buildscript {
     }
 }
 
+plugins {
+  id "edu.sc.seis.macAppBundle" version "2.2.1"
+}
+
 apply plugin: 'org.javafxports.jfxmobile'
 
 repositories {
+	mavenLocal()
     jcenter()
 }
 
+dependencies {
+    compile 'de.note:de.note.core:0.0.1-SNAPSHOT'
+}
 mainClassName = 'de.note.client.NoteClient'
 
 /*

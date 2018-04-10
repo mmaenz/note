@@ -40,7 +40,7 @@ public class NoteClient extends Application {
 	
 	@Override
     public void start(Stage stage) throws Exception {
-        initServer();
+        //initServer();
 		Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
         Scene scene = new Scene(new StackPane(new Label("Hello World!")),
                 bounds.getWidth(), bounds.getHeight());
