@@ -1,31 +1,29 @@
 package de.note.server;
 
-import java.io.IOException;
-import java.net.UnknownHostException;
-
 import de.root1.simon.Registry;
 import de.root1.simon.Simon;
-import de.root1.simon.exceptions.NameBindingException;
 
 public class NoteServer {
+	private LoginInterfaceImpl loginImpl = null;
+	private Registry registry = null;
 
-	   public static void main(String[] args)
-	   		throws UnknownHostException, IOException, NameBindingException {
-
-	      // create the serverobject
-	      LoginInterfaceImpl loginImpl = new LoginInterfaceImpl();
-
-	      // create the server's registry ...
-	      Registry registry = Simon.createRegistry(22222);
-	      registry.start();
-
-	      // ... where we can bind the serverobject to
-	      registry.bind("server", loginImpl);
-
-	      System.out.println("Server up and running!");
-
-	      // some mechanism to shutdown the server should be placed here
-	      // this should include the following command:
-	      // registry.unbind("server");
-	   }
+	public NoteServer() throws Exception {
+		loginImpl = new LoginInterfaceImpl();
+		registry = Simon.createRegistry();
 	}
+
+	public synchronized void run() throws Exception {
+		registry.start();
+		registry.bind("server", loginImpl);
+		System.out.println("Server up and running!");
+
+		while (true) {
+			wait();
+		}
+	}
+
+	public static void main(String[] args) throws Exception {
+		   new NoteServer().run();
+
+	   }
+}

@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class NoteClient extends Application {
     
 	public boolean initServer() throws Exception {
-		Lookup nameLookup = Simon.createNameLookup("127.0.0.1", 22222);
+		Lookup nameLookup = Simon.createNameLookup("127.0.0.1");
         LoginInterface server = (LoginInterface) nameLookup.lookup("server");
         try {
             // use the serverobject as it would exist on your local machine
