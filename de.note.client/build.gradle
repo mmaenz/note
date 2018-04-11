@@ -22,15 +22,18 @@ repositories {
     jcenter()
 }
 
-dependencies {
-    compile 'de.note:de.note.core:0.0.1-SNAPSHOT'
-	compile group: 'com.gluonhq', name: 'charm-down-core', version: '3.7.2'
-	compile group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.9'
-}
 mainClassName = 'de.note.client.NoteClient'
 
 
 jfxmobile {
+    downConfig {
+        version '3.5.0'
+        plugins 'storage', 'lifecycle'
+    }
+    
+    android {
+    }
+    
     ios {
         forceLinkClasses = [ 'de.note.noteclient.**.*' ]
     }

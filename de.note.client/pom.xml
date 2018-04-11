@@ -1,14 +1,26 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>de.note.client</artifactId>
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/com.gluonhq/charm-down-core -->
+		<!-- JavaFXPorts dependencies -->
 		<dependency>
 			<groupId>com.gluonhq</groupId>
 			<artifactId>charm-down-core</artifactId>
 			<version>3.7.2</version>
 		</dependency>
+		<dependency>
+			<groupId>com.gluonhq</groupId>
+			<artifactId>charm-down-plugin-storage</artifactId>
+			<version>3.7.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gluonhq</groupId>
+			<artifactId>charm-down-plugin-lifecycle</artifactId>
+			<version>3.7.2</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
 		<dependency>
 			<groupId>org.apache.pdfbox</groupId>
@@ -38,22 +50,6 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<finalName>${project.artifactId}-${project.version}</finalName>
-				</configuration>
-			</plugin>
-
 		</plugins>
 	</build>
 	<parent>
