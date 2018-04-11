@@ -27,7 +27,7 @@
 							<goal>install-file</goal>
 						</goals>
 						<configuration>
-							<file>${project.basedir}/extLib/simon-1.3.0-jar-with-dependencies.jar</file>
+							<file>../de.note/extLib/simon-1.3.0-jar-with-dependencies.jar</file>
 							<groupId>de.root1</groupId>
 							<artifactId>simon</artifactId>
 							<version>1.3.0</version>
