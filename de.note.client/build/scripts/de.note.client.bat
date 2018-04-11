@@ -63,7 +63,7 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\de.note.client.jar
+set CLASSPATH=%APP_HOME%\lib\de.note.client.jar;%APP_HOME%\lib\de.note.core-0.0.1-SNAPSHOT.jar;%APP_HOME%\lib\charm-down-core-3.7.2.jar;%APP_HOME%\lib\pdfbox-2.0.9.jar;%APP_HOME%\lib\fontbox-2.0.9.jar;%APP_HOME%\lib\commons-logging-1.2.jar
 
 @rem Execute de.note.client
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %DE_NOTE_CLIENT_OPTS%  -classpath "%CLASSPATH%" de.note.client.NoteClient %CMD_LINE_ARGS%
