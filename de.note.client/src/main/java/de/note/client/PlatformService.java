@@ -9,9 +9,11 @@ import javafx.geometry.Rectangle2D;
 public class PlatformService {
 
 	private static final Logger LOG = Logger.getLogger(PlatformService.class.getName());
-
+	private final ServiceLoader<PlatformProvider> serviceLoader;
+	private PlatformProvider provider;
 	private static PlatformService instance;
-
+	private DebugOptions debugOptions;
+	
 	public static synchronized PlatformService getInstance() throws Exception {
 		if (instance == null) {
 			instance = new PlatformService();
@@ -19,15 +21,13 @@ public class PlatformService {
 		return instance;
 	}
 
-	private final ServiceLoader<PlatformProvider> serviceLoader;
-	private PlatformProvider provider;
-
 	private PlatformService() throws Exception {
+		debugOptions = new DebugOptions();
 		serviceLoader = ServiceLoader.load(PlatformProvider.class);
-
-		if (isDebug()) {
-			provider = (PlatformProvider) Class.forName("de.note.client.DesktopPlatformProvider").newInstance();
-			LOG.info("Debugging: provider set to Desktop!");
+		
+		if (debugOptions.isDebug()) {
+			provider = (PlatformProvider) Class.forName(debugOptions.getPlatformProvider()).newInstance();
+			LOG.info(String.format("Debugging: provider set to %s!", debugOptions.getPlatformProvider()));
 		} else {
 			Iterator<PlatformProvider> iterator = serviceLoader.iterator();
 			while (iterator.hasNext()) {
@@ -43,12 +43,6 @@ public class PlatformService {
 				LOG.severe("No PlatformProvider implementation could be found!");
 			}
 		}
-	}
-
-	private boolean isDebug() {
-		// Parameter for debug: -Dde.note.debug=true
-		// Auto-sets to Desktop-Version!
-		return Boolean.getBoolean("de.note.debug");
 	}
 
 	public String getName() {
