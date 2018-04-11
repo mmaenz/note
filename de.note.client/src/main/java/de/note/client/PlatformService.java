@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.ServiceLoader;
 import java.util.logging.Logger;
 
-import de.note.client.desktop.DesktopPlatformProvider;
 import javafx.geometry.Rectangle2D;
 
 public class PlatformService {
@@ -13,7 +12,7 @@ public class PlatformService {
 
 	private static PlatformService instance;
 
-	public static synchronized PlatformService getInstance() {
+	public static synchronized PlatformService getInstance() throws Exception {
 		if (instance == null) {
 			instance = new PlatformService();
 		}
@@ -23,11 +22,11 @@ public class PlatformService {
 	private final ServiceLoader<PlatformProvider> serviceLoader;
 	private PlatformProvider provider;
 
-	private PlatformService() {
+	private PlatformService() throws Exception {
 		serviceLoader = ServiceLoader.load(PlatformProvider.class);
 
 		if (isDebug()) {
-			provider = new DesktopPlatformProvider();
+			provider = (PlatformProvider) Class.forName("de.note.client.DesktopPlatformProvider").newInstance();
 			LOG.info("Debugging: provider set to Desktop!");
 		} else {
 			Iterator<PlatformProvider> iterator = serviceLoader.iterator();
